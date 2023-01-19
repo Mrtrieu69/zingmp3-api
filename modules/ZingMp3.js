@@ -1,6 +1,6 @@
 let request = require("request-promise");
-// const { FileCookieStore } = require("tough-cookie-file-store");
-// const fs = require("fs");
+const { FileCookieStore } = require("tough-cookie-file-store");
+const fs = require("fs");
 
 const encrypt = require("./encrypt");
 
@@ -9,11 +9,11 @@ const API_KEY = "88265e23d4284f25963e6eedac8fbfa3";
 const SECRET_KEY = "2aa2d1c561e809b267f3638c4a307aab";
 const VERSION = "1.4.2";
 
-const cookiePath = "ZingMp3.json";
+const cookiePath = "./modules/ZingMp3.json";
 
-// if (!fs.existsSync(cookiePath)) fs.closeSync(fs.openSync(cookiePath, "w"));
+if (!fs.existsSync(cookiePath)) fs.closeSync(fs.openSync(cookiePath, "w"));
 
-// let cookiejar = request.jar(new FileCookieStore(cookiePath));
+let cookiejar = request.jar(new FileCookieStore(cookiePath));
 
 request = request.defaults({
     baseUrl: URL_API,
@@ -22,7 +22,7 @@ request = request.defaults({
     },
     gzip: true,
     json: true,
-    // jar: cookiejar,
+    jar: cookiejar,
 });
 class ZingMp3 {
     constructor() {
