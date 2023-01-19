@@ -1,6 +1,6 @@
 let request = require("request-promise");
 const { FileCookieStore } = require("tough-cookie-file-store");
-const fs = require("fs");
+// const fs = require("fs");
 
 const encrypt = require("./encrypt");
 
@@ -11,9 +11,11 @@ const VERSION = "1.4.2";
 
 const cookiePath = "./modules/ZingMp3.json";
 
-if (!fs.existsSync(cookiePath)) fs.closeSync(fs.openSync(cookiePath, "w"));
+// if (!fs.existsSync(cookiePath)) fs.closeSync(fs.openSync(cookiePath, "w"));
 
 let cookiejar = request.jar(new FileCookieStore(cookiePath));
+
+console.log(cookiejar);
 
 request = request.defaults({
     baseUrl: URL_API,
