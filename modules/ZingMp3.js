@@ -15,8 +15,6 @@ const cookiePath = "./modules/ZingMp3.json";
 
 let cookiejar = request.jar(new FileCookieStore(cookiePath));
 
-console.log(cookiejar);
-
 request = request.defaults({
     baseUrl: URL_API,
     qs: {
@@ -26,6 +24,7 @@ request = request.defaults({
     json: true,
     jar: cookiejar,
 });
+
 class ZingMp3 {
     constructor() {
         this.time = null;
